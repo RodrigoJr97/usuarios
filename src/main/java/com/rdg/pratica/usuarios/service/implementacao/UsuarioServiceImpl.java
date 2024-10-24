@@ -60,6 +60,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         return mapper.paraUsuarioResponse(usuario);
     }
 
+    @Override
+    public void deletarUsuario(String id) {
+        verificaExisteId(id);
+
+        repository.deleteById(id);
+    }
+
     private UsuarioEntity verificaExisteId(String id) {
         try {
             UsuarioEntity usuario = repository.findById(id)

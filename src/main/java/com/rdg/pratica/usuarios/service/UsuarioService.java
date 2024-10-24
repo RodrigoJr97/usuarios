@@ -15,4 +15,6 @@ public interface UsuarioService {
 
     UsuarioResponseDTO atualizarUsuario(String id, UsuarioRequestDTO usuarioRequest);
 
+    void deletarUsuario(String id);
+
 }
