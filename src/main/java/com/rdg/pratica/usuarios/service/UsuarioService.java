@@ -13,4 +13,6 @@ public interface UsuarioService {
 
     List<UsuarioResponseDTO> listarUsuarios();
 
+    UsuarioResponseDTO atualizarUsuario(String id, UsuarioRequestDTO usuarioRequest);
+
 }

@@ -34,14 +34,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponseDTO buscarUsuarioPorId(String id) {
-        try {
-            UsuarioEntity usuario = repository.findById(id)
-                    .orElseThrow(() -> new NoSuchElementException("ID - " + id + " não encontrado"));
+        UsuarioEntity usuario = verificaExisteId(id);
 
-            return mapper.paraUsuarioResponse(usuario);
-        } catch (Exception e) {
-            throw new BusinessException("Usuario não encontrado");
-        }
+        return mapper.paraUsuarioResponse(usuario);
     }
 
     @Override
@@ -52,6 +47,28 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .collect(Collectors.toList());
 
         return listaMapper;
+    }
+
+    @Override
+    public UsuarioResponseDTO atualizarUsuario(String id, UsuarioRequestDTO usuarioRequest) {
+        UsuarioEntity usuario = verificaExisteId(id);
+
+        usuario.setNome(usuarioRequest.nome());
+        usuario.setEmail(usuarioRequest.email());
+
+        repository.save(usuario);
+        return mapper.paraUsuarioResponse(usuario);
+    }
+
+    private UsuarioEntity verificaExisteId(String id) {
+        try {
+            UsuarioEntity usuario = repository.findById(id)
+                    .orElseThrow(() -> new NoSuchElementException("ID - " + id + " não encontrado"));
+
+            return usuario;
+        } catch (Exception e) {
+            throw new BusinessException("Usuario não encontrado");
+        }
     }
 
 }
