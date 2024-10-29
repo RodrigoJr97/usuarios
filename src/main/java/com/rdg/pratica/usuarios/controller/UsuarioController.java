@@ -3,6 +3,7 @@ package com.rdg.pratica.usuarios.controller;
 import com.rdg.pratica.usuarios.dto.request.UsuarioRequestDTO;
 import com.rdg.pratica.usuarios.dto.response.UsuarioResponseDTO;
 import com.rdg.pratica.usuarios.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioResponseDTO> salvarUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
+    public ResponseEntity<UsuarioResponseDTO> salvarUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         UsuarioResponseDTO response = service.salvarUsuario(usuarioRequestDTO);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);

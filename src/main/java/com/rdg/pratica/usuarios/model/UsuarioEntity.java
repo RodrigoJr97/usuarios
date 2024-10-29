@@ -1,6 +1,8 @@
 package com.rdg.pratica.usuarios.model;
 
-import lombok.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +12,11 @@ public class UsuarioEntity {
 
     @Id
     private String id;
+
+    @NotEmpty
     private String nome;
+
+    @Email
     private String email;
 
     public UsuarioEntity(String id, String nome, String email) {
