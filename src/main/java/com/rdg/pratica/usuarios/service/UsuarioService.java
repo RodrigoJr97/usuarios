@@ -11,7 +11,7 @@ public interface UsuarioService {
 
     UsuarioResponseDTO buscarUsuarioPorId(String id);
 
-    List<UsuarioResponseDTO> listarUsuarios();
+    List<UsuarioResponseDTO> buscarUsuarios();
 
     UsuarioResponseDTO atualizarUsuario(String id, UsuarioRequestDTO usuarioRequest);
 

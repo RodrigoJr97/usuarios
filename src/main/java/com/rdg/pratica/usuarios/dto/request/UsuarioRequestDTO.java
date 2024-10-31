@@ -9,4 +9,12 @@ public record UsuarioRequestDTO(@NotEmpty
                                 @NotEmpty
                                 @Email
                                 String email) {
+
+    @Override
+    public String toString() {
+        return "UsuarioRequestDTO{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
